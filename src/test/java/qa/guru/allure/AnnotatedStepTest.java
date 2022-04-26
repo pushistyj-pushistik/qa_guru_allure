@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 public class AnnotatedStepTest {
 
     public static final String REPOSITORY = "pushistyj-pushistik/LittleRockStar";
-    public static final String ISSUE_NAME = "Some ssues";
+    public static final String ISSUE_NAME = "Some issues";
 
     @Test
     public void testGitHubIssue() {

@@ -1,9 +1,14 @@
 package qa.guru.allure;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.WebDriverRunner;
 import com.codeborne.selenide.logevents.SelenideLogger;
+import io.qameta.allure.Allure;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.WebDriver;
+
+import java.nio.charset.StandardCharsets;
 
 import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.$;
@@ -15,7 +20,7 @@ import static org.openqa.selenium.By.partialLinkText;
 public class LambdaStepTest {
 
     public static final String REPOSITORY = "pushistyj-pushistik/LittleRockStar";
-    public static final String ISSUE_NAME = "Some ssues";
+    public static final String ISSUE_NAME = "Some issues";
     @Test
     public void testGithubIssue() {
         SelenideLogger.addListener("allure", new AllureSelenide());
@@ -35,6 +40,12 @@ public class LambdaStepTest {
         });
         step("Проверяем, что существует с номером " + ISSUE_NAME, () -> {
             $(withText(ISSUE_NAME)).should(Condition.visible);
+            Allure.getLifecycle().addAttachment(
+                    "Исходники страницы",
+                    "text/html",
+                    "html",
+                    WebDriverRunner.getWebDriver().getPageSource().getBytes(StandardCharsets.UTF_8)
+            );
         });
     }
 
