@@ -12,12 +12,12 @@ public class AnnotatedStepTest {
     @Test
     public void testGitHubIssue() {
         SelenideLogger.addListener("allure", new AllureSelenide());
-        WebSteps steps = new WebSteps();
+       WebSteps steps = new WebSteps();
 
         steps.openMainPage();
         steps.searchForRepository(REPOSITORY);
         steps.clickOnRepositoryLink(REPOSITORY);
         steps.openIssuesTab();
-        steps.shouldSeeIssueWithNumber(ISSUE_NAME);
+        steps.shouldSeeIssueWithName(ISSUE_NAME);
     }
 }

@@ -38,7 +38,7 @@ public class LambdaStepTest {
         step("Кликаем на Issues ", () -> {
             $(partialLinkText("Issues")).click();
         });
-        step("Проверяем, что существует с номером " + ISSUE_NAME, () -> {
+        step("Проверяем, что существует Issues с именем " + ISSUE_NAME, () -> {
             $(withText(ISSUE_NAME)).should(Condition.visible);
             Allure.getLifecycle().addAttachment(
                     "Исходники страницы",
